@@ -1,14 +1,26 @@
 package org.kaly.dao;
 
-import junit.framework.TestCase;
-public class CursoDaoTest extends TestCase {
+import org.junit.Test;
+import org.kaly.domain.Curso;
+import static org.junit.Assert.assertNotNull;
 
-    public void testCadastrar() {
+public class CursoDaoTest {
+
+    private ICursoDao cursoDao;
+
+    public CursoDaoTest() {
+        cursoDao = new CursoDao();
     }
 
-    public void testExcluir() {
-    }
+    @Test
+    public void cadastrar() {
+        Curso curso = new Curso();
+        curso.setCodigo("A1");
+        curso.setDescricao("CURSO TESTE");
+        curso.setNome("Curso de Java Backend");
+        curso = cursoDao.cadastrar(curso);
 
-    public void testBuscarTodos() {
+        assertNotNull(curso);
+        assertNotNull(curso.getId());
     }
 }
